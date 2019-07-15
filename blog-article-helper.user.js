@@ -2,7 +2,7 @@
 // @name         blog-article-helper
 // @description  博客文章直接跳转到来源地址、自动点击查看全文
 // @author       Cloud
-// @version      0.5
+// @version      0.6
 // @namespace    https://github.com/kt286/blog-article-helper
 // @homepageURL  https://github.com/kt286/blog-article-helper
 // @supportURL   https://github.com/kt286/blog-article-helper/issues
@@ -17,8 +17,7 @@
 const host = location.hostname;
 
 if (host.indexOf("juejin.im") != -1) {
-    //掘金跳转到来源地址，免得又是少图片 又是格式乱
-    window.location.href = decodeURIComponent(document.querySelector(".originalUrl a").href.replace("https://link.juejin.im/?target=", ""));
+    document.querySelector(".originalUrl a").href.replace("https://link.juejin.im/?target=", "");
 } else if (host.indexOf("blog.csdn.net") != -1) {
     window.onload = () => {
         csdn.copyright.init("", "", ""); //去除剪贴板劫持
@@ -29,12 +28,10 @@ if (host.indexOf("juejin.im") != -1) {
         document.querySelector(".pmores").click(); //查看全文
     }
 } else if (host.indexOf("inoreader.com") != -1) {
-    window.onload = () => {
-        var meta = document.createElement('meta');
-        meta.name = "referrer";
-        meta.content = "no-referrer";
-        document.getElementsByTagName('head')[0].appendChild(meta);
-    }
+    var meta = document.createElement('meta');
+    meta.name = "referrer";
+    meta.content = "no-referrer";
+    document.getElementsByTagName('head')[0].appendChild(meta);
 } else if (host.indexOf("jianshu.com") != -1) {
     window.onload = () => {
         M.copyright.config.minLength = 1000000; //去除剪贴板劫持
