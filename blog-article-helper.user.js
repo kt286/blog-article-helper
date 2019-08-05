@@ -21,6 +21,7 @@ if (host.indexOf("juejin.im") != -1) {
 } else if (host.indexOf("blog.csdn.net") != -1) {
     window.onload = () => {
         csdn.copyright.init("", "", ""); //去除剪贴板劫持
+        localStorage.setItem("anonymousUserLimit", ""); // 免登陆
         document.querySelector("#btn-readmore").click(); //查看全文
     }
 } else if (host.indexOf("lib.csdn.net") != -1) {
